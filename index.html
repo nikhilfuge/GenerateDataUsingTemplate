@@ -1,0 +1,61 @@
+<html>
+
+<head>
+	<script type="text/javascript">
+		function Convert() {
+			var input = document.getElementById("txtCSV").value;
+
+			var lines = input.split("\n");
+			var template = document.getElementById("txtTemplate").value;
+			var output = "";
+
+			for (var i = 0; i < lines.length; i++) {
+				var values = lines[i].split(",");
+				var temp = template;
+
+				for (var j = 0; j < values.length; j++) {
+					var temp = temp.replace("{" + j + "}", Trim(values[j]));
+				}
+				
+				output += temp + "\n";
+			}
+
+			document.getElementById("txtOutput").value = output;
+		}
+
+		function Trim(input) {
+			return input.trim();
+		}
+
+	</script>
+</head>
+
+<body style="font-family: Tahoma;">
+	<h2 style="text-align: center;">Generate Data using CSV and Template</h2>
+	<div>
+		<div style="float: left;width: 47%;padding: 1%;">
+			Template
+			<br />
+			<textarea id="txtTemplate" style="width:100%;height:250px;"></textarea>
+		</div>
+		<div style="float: left;width: 47%;padding: 1%;">
+			Input (CSV)
+			<br />
+			<textarea id="txtCSV" style="width:100%;height:250px;"></textarea>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div style="text-align: center">
+		<input type="button" value="Convert" onclick="return Convert();" />
+	</div>
+	<div>
+		<div style="float: left;width: 98%;padding: 1%;">
+			Output
+			<br />
+			<textarea id="txtOutput" style="width:100%;height:250px;"></textarea>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+</body>
+
+</html>
