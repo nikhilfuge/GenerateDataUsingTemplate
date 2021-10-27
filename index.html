@@ -14,7 +14,9 @@
 				var temp = template;
 
 				for (var j = 0; j < values.length; j++) {
-					var temp = temp.replace("{" + j + "}", Trim(values[j]));
+					var replaceString = "\\{" + j + "\\}";
+					var regex = new RegExp(replaceString, 'g');
+					var temp = temp.replace(regex, Trim(values[j]));
 				}
 				
 				output += temp + "\n";
